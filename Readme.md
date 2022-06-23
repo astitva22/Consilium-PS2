@@ -47,7 +47,7 @@ To make this system we need following registers-
 
 Floored division at each step can be calculated by shift-lefts from input register(say Right shift register or RSR) to other register(say left shift register or LSR). **Note that both registers will shift only left**. This way first quotient of ith floored division(i.e. with 2<sup>n-i</sup>, for n-bit input) can be calculated by i leftshifts.
 
-Now, for the square (say p) for (i+1)th iteration, components <i>4q<sup>2</sup></i> and <i>4q+1</i> need to be calculated in ith iteration. here q will be the values stored in LSR along with MSB of RSR. These will be added to give exact sq for nxt iteration and will be stored in the last register.
+Now, for the square (say p) for (i+1)th iteration, components <i>4q<sup>2</sup></i> and <i>4q+1</i> need to be calculated in ith iteration. here q will be the values stored in LSR along with MSB of RSR. <i>4q+1</i> component will be non-zero when the number is odd (MSB of RSR = 1) and zero when number is even (MSB of RSR = 0). TO account for this, MSB of RSR is AND with each bit of <i>4q+1</i> component and therefore will not affect odd cases but will cancel it in even cases. Then components can be added to give exact sq for nxt iteration and will be stored in the last register.
 
 This process is repeated till we get the whole input in LSR, which will be after exact n cycles for n-bit number.
 
